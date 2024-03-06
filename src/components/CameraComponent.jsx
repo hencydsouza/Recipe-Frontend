@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Webcam from 'react-webcam';
 import axios from 'axios';
 
@@ -17,8 +17,7 @@ const CameraComponent = () => {
     try {
       const formData = new FormData();
       formData.append('file', dataURItoBlob(image));
-
-      const response = await axios.post('http://127.0.0.1:8000/img_object_detection_to_json', formData, {
+      const response = await axios.post(`https://${import.meta.env.VITE_IP_ADDRESS}:8000/img_object_detection_to_recipe`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
